@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Pizzeria.Models.Pizze>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-center">Il nostro listino Pizze!</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+
+    @foreach (var item in Model)
+    {
+        <div class="card border-5 rounded-5 overflow-hidden border-dark" style="width: 18rem;">
+            <img src="~/Content/img/@item.Foto" class="card-img-top" alt="...">
+            <div class="card-body bgcard text-center">
+                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Nome) - @Html.DisplayFor(modelItem => item.Prezzo)</h5>
+                <p class="card-text">@Html.DisplayFor(modelItem => item.Ingredienti).</p>
+                @Html.ActionLink("Aggiungi al Carrello", "Details", new { id = item.IdPizza }, new { @class = "btn btn-primary form-control" })
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.IdPizza }) |
+        @Html.ActionLink("Details", "Details", new { id = item.IdPizza }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.IdPizza })*@
+            </div>
+        </div>
+    }
