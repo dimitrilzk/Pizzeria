@@ -32,3 +32,9 @@ textarea {
 .bgcard{
     background-color: orange;
 }
+.cardheight{
+    height: 50px;
+}
+.cardshadow {
+    box-shadow: 10px 10px 50px orange;
+}

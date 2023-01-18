@@ -4,7 +4,24 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="row mt-5">
+    <div class="col-5">
+        <img src="~/Content/img/@Model.Foto" class="card-img-top" >
+    </div>
+    <div class="col-7">
+        <h2>@Html.DisplayFor(model => model.Nome)</h2>
+        <b>Prezzo:</b>
+        <p>@Html.DisplayFor(model => model.Prezzo)</p>
+        <b>Prezzo:</b>
+        <p>@Html.DisplayFor(model => model.Ingredienti)</p>
+        <hr />
+        @{
+            Html.RenderPartial("Dettagli","PartialCreate");
+         }
+    </div>
+</div>
+
+@*<h2>Details</h2>
 
 <div>
     <h4>Pizze</h4>
@@ -47,4 +64,4 @@
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.IdPizza }) |
     @Html.ActionLink("Back to List", "Index")
-</p>
+</p>*@
