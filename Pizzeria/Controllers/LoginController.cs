@@ -29,7 +29,7 @@ namespace Pizzeria.Controllers
             }
             else
             {
-                ViewBag.logmessage = "Usernaem e/o password errati!";
+                ViewBag.logmessage = "Username e/o password errati!";
             }
             return View();
         }

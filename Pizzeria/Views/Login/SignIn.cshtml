@@ -4,46 +4,52 @@
     ViewBag.Title = "SignIn";
 }
 
-<h2>SignIn</h2>
-@if(ViewBag.logmessage != null)
+<div class="row my-5 d-flex justify-content-center">
+    <div class="col-4 alert alert-info">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+    <div class="d-flex justify-content-center">
+        <div class="form-horizontal">
+            <h2 class="text-center mb-4">Login</h2>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Pass, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.Pass, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Pass, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @if (ViewBag.logmessage != null)
             {
-                <p class="alert alert-danger">@ViewBag.logmessage</p>
+                <p class="alert alert-danger text-center my-3">@ViewBag.logmessage</p>
             }
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Users</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Pass, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Pass, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Pass, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-12 my-3">
+                    <input type="submit" value="Create" class="btn btn-primary form-control" />
+                </div>
             </div>
         </div>
     </div>
-}
 
-<div>
-    @Html.ActionLink("Torna alla Home", "Index", "Pizze")
+        <div class="d-flex justify-content-center">
+            @Html.ActionLink("Torna alla Home", "Index", "Pizze")
+        </div>
+
+        }
+    </div>
 </div>
 
 @section Scripts {

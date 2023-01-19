@@ -12,24 +12,21 @@
     <nav class="navbar navbar-expand-lg bg-dark fw-bolder ">
         <div class="container-fluid">
             <div class="container-fluid">
-                @Html.ActionLink("Pizzeria Mille Miglia", "Index", "Pizze", new { area = "" }, new { @class = "navbar-brand text-light fst-italic fw-bolder" })
+                @Html.ActionLink("Pizzeria Mille Miglia", "Index", "Pizze", new { area = "" }, new { @class = "navbar-brand text-warning fst-italic fw-bolder" })
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav d-flex align-items-center">
                     <li class="nav-link">
-                        @Html.ActionLink("Pizze", "Create", "Pizze", new { }, new { @class = "text-light text-decoration-none" })
+                        @Html.ActionLink("Carrello", "AggiungiCamera", "Camere", new { }, new { @class = "text-warning text-decoration-none" })
                     </li>
                     <li class="nav-link">
-                        @Html.ActionLink("Prenotazioni", "AggiungiPrenotazione", "Prenotazioni", new { }, new { @class = "text-light text-decoration-none" })
+                        @Html.ActionLink("Login", "SignIn", "Login", new { }, new { @class = "text-info text-decoration-none" })
                     </li>
                     <li class="nav-link">
-                        @Html.ActionLink("Camere", "AggiungiCamera", "Camere", new { }, new { @class = "text-light text-decoration-none" })
-                    </li>
-                    <li class="nav-link">
-                        @Html.ActionLink("Login", "SignIn", "Login", new { }, new { @class = "text-light text-decoration-none" })
+                        @Html.ActionLink("Area Riservata", "Create", "Pizze", new { }, new { @class = "container-fluid text-danger text-decoration-none" })
                     </li>
                 </ul>
             </div>
