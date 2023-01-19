@@ -18,9 +18,12 @@ namespace Pizzeria.Models
         public int IdUser { get; set; }
 
         [StringLength(50)]
+        [Required(ErrorMessage = "Campo obbligatorio!")]
         public string Username { get; set; }
 
         [StringLength(50)]
+        [Display(Name = "Password")]
+        [Required(ErrorMessage = "Campo obbligatorio!")]
         public string Pass { get; set; }
 
         [StringLength(50)]

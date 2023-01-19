@@ -22,6 +22,7 @@ namespace Pizzeria.Models
         public string Nome { get; set; }
 
         [Column(TypeName = "money")]
+        [DisplayFormat(DataFormatString = "{0:C2}")]
         [DataType(DataType.Currency)]
         public decimal? Prezzo { get; set; }
 

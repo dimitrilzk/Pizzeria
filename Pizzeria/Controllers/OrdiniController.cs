@@ -6,11 +6,17 @@ using System.Web.Mvc;
 
 namespace Pizzeria.Controllers
 {
-    public class DettagliController : Controller
+    public class OrdiniController : Controller
     {
-        // GET: Dettagli
+        // GET: Ordini
         public ActionResult Index()
         {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ConcludiOrdine(int idUser)
+        {
+
             return View();
         }
     }

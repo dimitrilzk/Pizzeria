@@ -20,8 +20,8 @@
                     <h5 class="card-title">@Html.DisplayFor(modelItem => item.Nome) - @Html.DisplayFor(modelItem => item.Prezzo)</h5>
                     <p class="card-text cardheight">@Html.DisplayFor(modelItem => item.Ingredienti).</p>
                     @Html.ActionLink("Maggiori informazioni", "Details", new { id = item.IdPizza }, new { @class = "btn btn-primary form-control" })
-                    @*@Html.ActionLink("Edit", "Edit", new { id = item.IdPizza }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.IdPizza })*@
+                    @Html.ActionLink("Edit", "Edit", new { id = item.IdPizza }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.IdPizza })
                 </div>
             </div>
         </div>

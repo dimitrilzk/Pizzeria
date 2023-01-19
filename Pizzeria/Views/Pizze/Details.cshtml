@@ -4,64 +4,69 @@
     ViewBag.Title = "Details";
 }
 
-<div class="row mt-5">
-    <div class="col-5">
-        <img src="~/Content/img/@Model.Foto" class="card-img-top" >
+@using (Html.BeginForm("Details", "Pizze"))
+{
+    <div class="row mt-5">
+        <div class="col-5">
+            <img src="~/Content/img/@Model.Foto" class="card-img-top">
+        </div>
+        <div class="col-7">
+            @Html.HiddenFor(model => model.IdPizza)
+            <h2>@Html.DisplayFor(model => model.Nome)</h2>
+            <b>Prezzo:</b>
+            <p>@Html.DisplayFor(model => model.Prezzo)</p>
+            <b>Prezzo:</b>
+            <p>@Html.DisplayFor(model => model.Ingredienti)</p>
+            <hr />
+            <input type="text" name="Quantita" /> <br />
+            <input type="submit" value="Aggiungi al Carrello" class="btn btn-primary form-control" /> <br />
+            @Html.ActionLink("Concludi Ordine", "ConcludiOrdine", "Ordini", new { @class = "btn btn-warning form-control" })
+
+        </div>
     </div>
-    <div class="col-7">
-        <h2>@Html.DisplayFor(model => model.Nome)</h2>
-        <b>Prezzo:</b>
-        <p>@Html.DisplayFor(model => model.Prezzo)</p>
-        <b>Prezzo:</b>
-        <p>@Html.DisplayFor(model => model.Ingredienti)</p>
-        <hr />
-        @{
-            Html.RenderPartial("Dettagli","PartialCreate");
-         }
-    </div>
-</div>
+}
 
 @*<h2>Details</h2>
 
-<div>
-    <h4>Pizze</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
+    <div>
+        <h4>Pizze</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nome)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Nome)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Prezzo)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Prezzo)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Prezzo)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Prezzo)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Ingredienti)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Ingredienti)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Ingredienti)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Ingredienti)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Foto)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Foto)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Foto)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Foto)
+            </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdPizza }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>*@
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.IdPizza }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@

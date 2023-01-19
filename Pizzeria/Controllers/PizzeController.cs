@@ -34,6 +34,18 @@ namespace Pizzeria.Controllers
             }
             return View(pizze);
         }
+        [HttpPost]
+        public ActionResult Details(int id, int Quantita)
+        {
+            var pizza = Carrello.IdPizza = id;
+            var quantita = Carrello.Quantita= Quantita;
+            DettagliOrdini dettaglio = new DettagliOrdini();
+            dettaglio.IdPizza= pizza;
+            dettaglio.Quantita= quantita;
+            db.DettagliOrdini.Add(dettaglio);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Pizze");
+        }
 
         // GET: Pizze/Create
         public ActionResult Create()
