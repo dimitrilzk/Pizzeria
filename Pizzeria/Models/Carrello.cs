@@ -7,7 +7,8 @@ namespace Pizzeria.Models
 {
     public static class Carrello
     {
-        public static int IdPizza { get; set; }
-        public static int Quantita {get; set;}
+        public static List<ListaPizze> ListaCompleta = new List<ListaPizze>();
+
     }
+    
 }

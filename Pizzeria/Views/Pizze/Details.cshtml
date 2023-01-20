@@ -4,7 +4,7 @@
     ViewBag.Title = "Details";
 }
 
-@using (Html.BeginForm("Details", "Pizze"))
+@using (Html.BeginForm("Details", "Pizze", FormMethod.Post))
 {
     <div class="row mt-5 ">
         <div class="col-4 d-flex justify-content-center align-items-center">
@@ -26,7 +26,6 @@
             <div class="d-flex">
                 <input type="submit" value="Aggiungi al Carrello" class="btn btn-primary me-5" /> <br />
                 @Html.ActionLink("Torna alla Home", "Index", "Pizze", new { @class = "btn btn-outline-primary me-5" })
-                @Html.ActionLink("Concludi Ordine", "ConcludiOrdine", "Ordini", new { @class = "btn btn-warning" })
             </div>
         </div>
     </div>

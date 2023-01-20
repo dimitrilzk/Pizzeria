@@ -129,7 +129,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\DettagliController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OrdiniController.cs" />
     <Compile Include="Controllers\PizzeController.cs" />
@@ -147,6 +146,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Carrello.cs" />
     <Compile Include="Models\DettagliOrdini.cs" />
+    <Compile Include="Models\ListaPizze.cs" />
     <Compile Include="Models\ModelDBContext.cs" />
     <Compile Include="Models\Ordini.cs" />
     <Compile Include="Models\Pizze.cs" />
@@ -230,11 +230,11 @@
     <Content Include="Views\Pizze\Index.cshtml" />
     <Content Include="Views\Login\SignIn.cshtml" />
     <Content Include="Views\Ordini\ConcludiOrdine.cshtml" />
+    <Content Include="Views\Ordini\_PartialDettagliOrdine.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\img\" />
-    <Folder Include="Views\Dettagli\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

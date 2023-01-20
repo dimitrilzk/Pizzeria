@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -10,17 +11,23 @@ using Pizzeria.Models;
 
 namespace Pizzeria.Controllers
 {
+    [Authorize]
     public class PizzeController : Controller
     {
         private ModelDBContext db = new ModelDBContext();
 
-        // GET: Pizze
+        public ActionResult AreaRiservata()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View(db.Pizze.ToList());
         }
 
-        // GET: Pizze/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,17 +44,22 @@ namespace Pizzeria.Controllers
         [HttpPost]
         public ActionResult Details(int id, int Quantita)
         {
-            var pizza = Carrello.IdPizza = id;
-            var quantita = Carrello.Quantita= Quantita;
-            DettagliOrdini dettaglio = new DettagliOrdini();
-            dettaglio.IdPizza= pizza;
-            dettaglio.Quantita= quantita;
-            db.DettagliOrdini.Add(dettaglio);
-            db.SaveChanges();
+            ListaPizze PizzeOrdinate = new ListaPizze();
+            PizzeOrdinate.IdPizza = id;
+            PizzeOrdinate.Quantita = Quantita;
+            Carrello.ListaCompleta.Add(PizzeOrdinate);
+            //foreach( var pizza in Carrello.ListaCompleta)
+            //{
+            //    DettagliOrdini dettaglio = new DettagliOrdini();
+            //    dettaglio.Quantita = pizza.Quantita;
+            //    dettaglio.IdPizza = pizza.IdPizza;
+            //    db.DettagliOrdini.Add(dettaglio);
+            //    //db.SaveChanges();
+            //}
             return RedirectToAction("Index", "Pizze");
         }
 
-        // GET: Pizze/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
@@ -58,6 +70,7 @@ namespace Pizzeria.Controllers
         // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult Create([Bind(Include = "IdPizza,Nome,Prezzo,Ingredienti")] Pizze pizze, HttpPostedFileBase FotoPizza)
         {
             if (ModelState.IsValid == true && FotoPizza != null)
@@ -137,5 +150,6 @@ namespace Pizzeria.Controllers
             }
             base.Dispose(disposing);
         }
+
     }
 }
