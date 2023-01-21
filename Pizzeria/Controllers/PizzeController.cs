@@ -108,10 +108,20 @@ namespace Pizzeria.Controllers
         // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdPizza,Nome,Prezzo,Ingredienti,Foto")] Pizze pizze)
+        public ActionResult Edit([Bind(Include = "IdPizza,Nome,Prezzo,Ingredienti,Foto")] Pizze pizze, HttpPostedFileBase FotoPizza)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid == true && FotoPizza != null)
             {
+                pizze.Foto = FotoPizza.FileName;
+                FotoPizza.SaveAs(Server.MapPath("/Content/img/" + pizze.Foto));
+                db.Entry(pizze).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Create");
+            }else if (ModelState.IsValid)
+            {
+                string NomeFoto = db.Pizze.Find(pizze.IdPizza).Foto;
+                //pizze.Foto = Server.MapPath("/Content/img/" + NomeFoto);
+                pizze.Foto = NomeFoto;
                 db.Entry(pizze).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Create");
