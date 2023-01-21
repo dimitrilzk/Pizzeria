@@ -4,18 +4,16 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h4 class="text-center">Aggiungi un nuovo prodotto</h4>
+<hr />
 
-
-@using (Html.BeginForm("Create", "Pizze", FormMethod.Post, new {enctype="multipart/form-data"})) 
+@using (Html.BeginForm("Create", "Pizze", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="row">
-        <h4>Pizze</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
+        <div class="form-group col-3">
             @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
@@ -23,7 +21,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-3">
             @Html.LabelFor(model => model.Prezzo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Prezzo, new { htmlAttributes = new { @class = "form-control" } })
@@ -31,7 +29,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-3">
             @Html.LabelFor(model => model.Ingredienti, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Ingredienti, new { htmlAttributes = new { @class = "form-control" } })
@@ -39,25 +37,26 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-3">
             @Html.LabelFor(model => model.Foto, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBox("FotoPizza","", new { @class = "form-control", type="file", accept="img/jpg, img/webp" })
+                @Html.TextBox("FotoPizza", "", new { @class = "form-control", type = "file", accept = "img/jpg, img/webp" })
                 @Html.ValidationMessageFor(model => model.Foto, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+        <div class="form-group row">
+            <div class="col-12 my-3 d-flex justify-content-center ">
+                <input type="submit" value="Aggiungi" class="btn btn-primary" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+<hr />
+@{
+    Html.RenderAction("PartialProductList");
+}
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

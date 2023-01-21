@@ -16,9 +16,9 @@ namespace Pizzeria.Controllers
     {
         private ModelDBContext db = new ModelDBContext();
 
-        public ActionResult AreaRiservata()
+        public ActionResult PartialProductList()
         {
-            return View();
+            return PartialView("_PartialProductList", db.Pizze.ToList());
         }
 
         [AllowAnonymous]
@@ -42,24 +42,27 @@ namespace Pizzeria.Controllers
             return View(pizze);
         }
         [HttpPost]
-        public ActionResult Details(int id, int Quantita)
+        public ActionResult Details(int id, int quantita)
         {
-            ListaPizze PizzeOrdinate = new ListaPizze();
-            PizzeOrdinate.IdPizza = id;
-            PizzeOrdinate.Quantita = Quantita;
-            Carrello.ListaCompleta.Add(PizzeOrdinate);
-            //foreach( var pizza in Carrello.ListaCompleta)
-            //{
-            //    DettagliOrdini dettaglio = new DettagliOrdini();
-            //    dettaglio.Quantita = pizza.Quantita;
-            //    dettaglio.IdPizza = pizza.IdPizza;
-            //    db.DettagliOrdini.Add(dettaglio);
-            //    //db.SaveChanges();
-            //}
-            return RedirectToAction("Index", "Pizze");
+            try
+            {
+                ListaPizze PizzeOrdinate = new ListaPizze();
+                PizzeOrdinate.IdPizza = id;
+                PizzeOrdinate.Nome = db.Pizze.Find(id).Nome;
+                PizzeOrdinate.Prezzo = Convert.ToDecimal(db.Pizze.Find(id).Prezzo);
+                PizzeOrdinate.Quantita = quantita;
+                PizzeOrdinate.Totale = Convert.ToDecimal(db.Pizze.Find(id).Prezzo) * quantita;
+                Carrello.ListaCompleta.Add(PizzeOrdinate);
+                return RedirectToAction("Index", "Pizze");
+            }catch (Exception ex)
+            {
+                TempData["errore"] = ex + "Devi inserire una quantità.";
+                return RedirectToAction("Details", "Pizze");
+            }
+
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -70,7 +73,7 @@ namespace Pizzeria.Controllers
         // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin")]
+        [Authorize]
         public ActionResult Create([Bind(Include = "IdPizza,Nome,Prezzo,Ingredienti")] Pizze pizze, HttpPostedFileBase FotoPizza)
         {
             if (ModelState.IsValid == true && FotoPizza != null)
@@ -79,7 +82,7 @@ namespace Pizzeria.Controllers
                 FotoPizza.SaveAs(Server.MapPath("/Content/img/" + pizze.Foto));
                 db.Pizze.Add(pizze);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
             return View();
@@ -111,7 +114,7 @@ namespace Pizzeria.Controllers
             {
                 db.Entry(pizze).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
             return View(pizze);
         }
@@ -139,7 +142,7 @@ namespace Pizzeria.Controllers
             Pizze pizze = db.Pizze.Find(id);
             db.Pizze.Remove(pizze);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Create");
         }
 
         protected override void Dispose(bool disposing)

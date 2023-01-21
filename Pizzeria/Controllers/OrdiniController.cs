@@ -19,19 +19,13 @@ namespace Pizzeria.Controllers
         // GET: Ordini
         public ActionResult ConcludiOrdine()
         {
-            
-            //Users utente = db.Users.Where(x => x.Username == User.Identity.Name).First();
-            //Ordini ordine = new Ordini();
-            //foreach (var item in Carrello.ListaCompleta)
-            //{
-            //    DettagliOrdini dettaglio = new DettagliOrdini();
-            //    dettaglio.Quantita = item.Quantita;
-            //    dettaglio.IdPizza = item.IdPizza;
-            //    ordine.DettagliOrdini.Add(dettaglio);
-            //}
-            //ordine.IdUser = utente.IdUser;
-            //db.Ordini.Add(ordine);
-            //db.SaveChanges();
+            //ciclo lista carrello e moltiplico prezzo per quantita e tot in view bag
+            foreach(var item in Carrello.ListaCompleta)
+            {
+                int Conteggio = Carrello.ListaCompleta.Count();
+                decimal TotaleComplessivo = item.Totale * (Conteggio);
+                TempData["Totale"] = TotaleComplessivo;
+            }
             return View();
         }
         [HttpPost]
@@ -57,7 +51,8 @@ namespace Pizzeria.Controllers
             Carrello.ListaCompleta.Clear();
 
             db.SaveChanges();
-            return PartialView("_PartialDettagliOrdine", db.DettagliOrdini.ToList());
+            TempData["messaggio"] = "Ordine effettuato, stiamo arrivando!";
+            return RedirectToAction("ConcludiOrdine");
         }
 
     }

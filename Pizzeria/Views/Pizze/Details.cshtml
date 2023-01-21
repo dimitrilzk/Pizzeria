@@ -3,6 +3,10 @@
 @{
     ViewBag.Title = "Details";
 }
+@if (TempData["errore"] != null)
+{
+    <p class="text-center mt-3 alert alert-danger">@TempData["errore"]</p>
+}
 
 @using (Html.BeginForm("Details", "Pizze", FormMethod.Post))
 {
