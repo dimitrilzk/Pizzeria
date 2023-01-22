@@ -74,7 +74,7 @@ namespace Pizzeria.Controllers
 
         }
 
-        [Authorize]
+        [Authorize(Roles ="admin")]
         public ActionResult Create()
         {
             return View();

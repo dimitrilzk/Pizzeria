@@ -145,6 +145,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Carrello.cs" />
+    <Compile Include="Models\CustomRole.cs" />
     <Compile Include="Models\DettagliOrdini.cs" />
     <Compile Include="Models\ListaPizze.cs" />
     <Compile Include="Models\ModelDBContext.cs" />
