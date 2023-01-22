@@ -32,8 +32,8 @@
             <img src="~/Content/img/@Html.DisplayFor(modelItem => item.Foto)" style="width: 2rem;"  />
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdPizza }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdPizza })
+            @Html.ActionLink("Modifica", "Edit", new { id=item.IdPizza }) |
+            @Html.ActionLink("Cancella", "Delete", new { id=item.IdPizza })
         </td>
     </tr>
 }

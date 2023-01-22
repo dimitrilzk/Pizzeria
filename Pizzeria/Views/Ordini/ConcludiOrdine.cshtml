@@ -19,7 +19,7 @@
     @Html.AntiForgeryToken()
     if (TempData["Totale"] != null)
     {
-        <p class="text-center mt-3 alert alert-info">Il totale da pagare in contrassegno è di: @TempData["Totale"] €</p>
+        <p class="text-center mt-3 alert alert-info">Il totale da pagare in contrassegno è di: @TempData["Totale"]</p>
     }
     <hr />
     <h3 class="text-center my-3">Puoi specificare dei dettagli per il tuo ordine nel campo Note</h3>

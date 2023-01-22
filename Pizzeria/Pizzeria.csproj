@@ -232,6 +232,7 @@
     <Content Include="Views\Ordini\ConcludiOrdine.cshtml" />
     <Content Include="Views\Ordini\_PartialDettagliOrdine.cshtml" />
     <Content Include="Views\Pizze\_PartialProductList.cshtml" />
+    <Content Include="Views\Pizze\EvadiOrdini.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

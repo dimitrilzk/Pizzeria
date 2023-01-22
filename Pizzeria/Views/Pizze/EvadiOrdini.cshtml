@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Pizzeria.Models.DettagliOrdini>
+
+@{
+    ViewBag.Title = "EvadiOrdini";
+}
+
+<h2 class="text-center my-2">Evadi Ordini</h2>
+<hr />
+<table class="table table-dark table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Pizze.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ordini.Users.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantita)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pizze.Prezzo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ordini.Evaso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ordini.Confermato)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ordini.Note)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pizze.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ordini.Users.Username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantita)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pizze.Prezzo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ordini.Evaso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ordini.Confermato)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ordini.Note)
+        </td>
+        @Html.HiddenFor(modelItem => item.Ordini.IdOrdine)
+        <td>
+            @Html.ActionLink("Evadi", "EvadiOrdine", new { id = item.IdOrdine }) |
+            @Html.ActionLink("Cancella", "DeleteOrdine", "Pizze", null, new { id = item.IdOrdine })
+        </td>
+    </tr>
+}
+
+</table>

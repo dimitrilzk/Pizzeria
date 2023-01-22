@@ -16,6 +16,18 @@ namespace Pizzeria.Controllers
     {
         private ModelDBContext db = new ModelDBContext();
 
+        public ActionResult EvadiOrdini()
+        {
+            var ordini = db.DettagliOrdini.Include("Ordini").ToList();
+            return View(ordini);
+        }
+        public ActionResult DeleteOrdine(int id)
+        {
+            Ordini ordine = db.Ordini.Find(id);
+            db.Ordini.Remove(ordine);
+            db.SaveChanges();
+            return RedirectToAction("EvadiOrdini");
+        }
         public ActionResult PartialProductList()
         {
             return PartialView("_PartialProductList", db.Pizze.ToList());
@@ -119,10 +131,12 @@ namespace Pizzeria.Controllers
                 return RedirectToAction("Create");
             }else if (ModelState.IsValid)
             {
-                string NomeFoto = db.Pizze.Find(pizze.IdPizza).Foto;
-                //pizze.Foto = Server.MapPath("/Content/img/" + NomeFoto);
-                pizze.Foto = NomeFoto;
-                db.Entry(pizze).State = EntityState.Modified;
+                Pizze pizzaInDb = db.Pizze.Find(pizze.IdPizza);
+                pizzaInDb.Nome = pizze.Nome;
+                pizzaInDb.Prezzo= pizze.Prezzo;
+                pizzaInDb.Ingredienti = pizze.Ingredienti;
+                pizzaInDb.Foto = db.Pizze.Find(pizze.IdPizza).Foto;
+                db.Entry(pizzaInDb).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Create");
             }

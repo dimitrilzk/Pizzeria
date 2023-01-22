@@ -19,12 +19,13 @@ namespace Pizzeria.Controllers
         // GET: Ordini
         public ActionResult ConcludiOrdine()
         {
-            //ciclo lista carrello e moltiplico prezzo per quantita e tot in view bag
+            decimal TotaleComplessivo;
+            decimal costo = 0;
             foreach(var item in Carrello.ListaCompleta)
             {
-                int Conteggio = Carrello.ListaCompleta.Count();
-                decimal TotaleComplessivo = item.Totale * (Conteggio);
-                TempData["Totale"] = TotaleComplessivo;
+                var totalePizza = item.Prezzo * item.Quantita;
+                TotaleComplessivo = costo += totalePizza;
+                TempData["Totale"] = TotaleComplessivo.ToString("c2");
             }
             return View();
         }
